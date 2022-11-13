@@ -9,11 +9,17 @@ class SantaController extends Controller
 {
     public function index(Santa $id)
     {
-        $user = User::findOrFail($id->user_id);
-        $santaFor = User::findOrFail($id->santa_for);
-        $hasSanta = DB::table('users')
-            ->leftJoin('santas', 'users.id', '=', 'santas.user_id')
-            ->where('santa_for', $id->user_id)
+        $user = User::findOrFail($id->id);
+
+        $santaFor = DB::table('santas')
+            ->leftJoin('users', 'santa_for', '=', 'users.id')
+            ->where('user_id', $id->id)
+            ->select('users.nick')
+            ->first();
+
+        $hasSanta = DB::table('santas')
+            ->leftJoin('users', 'santas.user_id', '=', 'users.id')
+            ->where('santa_for', $id->id)
             ->select('users.nick')
             ->first();
 
