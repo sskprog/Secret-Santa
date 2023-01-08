@@ -12,5 +12,5 @@
 - 'santa_for' - для кого он является Сантой
 - 'has_santa' - кто для него Санта.
 
-Пример ссылки для участника с id = 2. http://localhost/santa/2 .
+Пример ссылки для участника с id = 2. http://localhost/api/santa/2 .
 
